@@ -7,6 +7,12 @@ class ReplyView
 
         //здесь достаём данные из post и определяем, какой view показать
 
+        if ($_POST['view-type'] === 'print-view') {
+            $this->showPrintableReplyView();
+        } else {
+            $this->showBrowserReplyView();
+        }
+
     }
 
     private function showPrintableReplyView()

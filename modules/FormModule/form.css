@@ -11,3 +11,11 @@
 label, input {
     user-select: none;
 }
+
+.text-field input {
+    width: 100%;
+}
+
+#email {
+    display: none;
+}

@@ -1,19 +1,25 @@
 
 <?php
-$APP->showForm();
+
+if (!isset($_POST['state'])) $_POST['state'] = 'page-load';
+
+echo '<pre>';
+print_r($_POST);
+echo '</pre>';
 
 //Здесь определяем, показывать ли нам ReplyView и показывать ли вообще
 
+
 switch ($APP->getState()) {
 
-    case 'first_load':
+    case 'page-load':
+
+        $APP->showForm();
 
         break;
-    case 'first_post':
+    case 'form-post':
 
-        break;
-    case 'next_post':
-
+        $APP->showReplyView();
         break;
     default:
         echo 'default case';

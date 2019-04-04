@@ -2,7 +2,9 @@
 
     <div class="_flex-centering">
 
-        <form action="" class="pr-form">
+        <form method="post" class="pr-form">
+
+            <input type="hidden" name="state" value="form-post">
 
             <h3 class="pr-form__title">Тест математических знаний</h3>
             <div class="pr-form__mandatory-field-message">* – обязательное поле</div>
@@ -26,11 +28,12 @@
 
                         <table>
                             <tr>
-                                <td><input type="radio" name="pr-type" id="triangle-square" value="triangle-square" checked><label for="triangle-square">Площадь треугольника</label></td>
+                                <td><input type="radio" name="pr-type" id="triangle-perimeter" value="triangle-perimeter"><label for="triangle-perimeter">Периметр треугольника</label></td>
+
                                 <td><input type="radio" name="pr-type" id="arith-average" value="arith-average"><label for="arith-average">Среднее арифметическое</label></td>
                             </tr>
                             <tr>
-                                <td><input type="radio" name="pr-type" id="triangle-perimeter" value="triangle-perimeter"><label for="triangle-perimeter">Периметр треугольника</label></td>
+                                <td><input type="radio" name="pr-type" id="triangle-square" value="triangle-square" checked><label for="triangle-square">Площадь треугольника</label></td>
                                 <td><input type="radio" name="pr-type" id="geom-average" value="geom-average"><label for="geom-average">Среднее геометрическое</label></td>
                             </tr>
                             <tr>
@@ -74,7 +77,7 @@
 
                 <tr class="pr-form__field">
                     <td colspan="2">
-                        <input type="checkbox" value="Отправить результат на почту"
+                        <input type="checkbox" value="yes"
                                id="send-to-email-checkbox"
                                name="send-to-email-checkbox">
                         <label for="send-to-email-checkbox">Отправить
@@ -83,7 +86,7 @@
                 </tr>
 
 
-                <tr id="email-input" class="pr-form__field text-field field_mandatory">
+                <tr id="email" class="pr-form__field text-field field_mandatory">
                     <td><label for="email-input">Ваш email*</label></td>
                     <td><input type="text" id="email-input" name="email" placeholder=""></td>
                 </tr>

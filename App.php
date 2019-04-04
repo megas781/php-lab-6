@@ -9,7 +9,7 @@ class App {
 
     //При загрузке страницы сначала определяем состояние
     function getState() {
-        return 'first_load';
+        return $_POST['state'];
     }
 
     function showForm() {
