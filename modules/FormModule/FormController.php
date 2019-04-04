@@ -1,6 +1,6 @@
 <?php
 
-class FormView {
+class FormController {
     function __construct()
     {
 

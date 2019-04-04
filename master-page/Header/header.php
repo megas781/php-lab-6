@@ -10,7 +10,17 @@
     <link rel="stylesheet" href="compose.css">
 </head>
 <body>
+<div>
+    <?php
 
-<?php
-include $_SERVER['DOCUMENT_ROOT'] . '/App.php';
-?>
+    if (!isset($_POST['state'])) $_POST['state'] = 'page-load';
+
+    echo '<pre>';
+    print_r($_POST);
+    echo '</pre>';
+
+    ?>
+    <div class="_flex-centering">
+        <?php
+        include $_SERVER['DOCUMENT_ROOT'] . '/App.php';
+        ?>

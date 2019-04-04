@@ -13,15 +13,15 @@ class App {
     }
 
     function showForm() {
-        include 'modules/FormModule/form.php';
-        $form = new FormView();
+        include 'modules/FormModule/FormController.php';
+        $form = new FormController();
         $form->run();
     }
 
-    function showReplyView() {
+    function showReply() {
 
-        include "modules/ReplyModule/reply.php";
-        $reply = new ReplyView();
+        include "modules/ReplyModule/ReplyController.php";
+        $reply = new ReplyController();
         $reply-> run();
 
     }
