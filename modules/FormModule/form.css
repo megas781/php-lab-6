@@ -1,0 +1,13 @@
+.pr-form {
+    border: 1px solid black;
+    /*margin: 60px 0;*/
+    padding: 16px;
+}
+
+.pr-form div {
+    /*display: block;*/
+}
+
+label, input {
+    user-select: none;
+}

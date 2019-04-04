@@ -1,0 +1,8 @@
+._flex-centering {
+    display: flex;
+    justify-content: space-around;
+}
+.work-area {
+    width: 960px;
+    display: block;
+}
