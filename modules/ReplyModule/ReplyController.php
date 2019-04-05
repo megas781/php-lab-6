@@ -26,7 +26,7 @@ class ReplyController
     private function postedDataIsValid()
     {
 //        echo 'валидность не пройдена';
-        return true;
+        return false;
     }
 
     private function showPrintableReplyView()

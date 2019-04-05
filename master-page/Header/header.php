@@ -15,9 +15,9 @@
 
     if (!isset($_POST['state'])) $_POST['state'] = 'page-load';
 
-    echo '<pre>';
-    print_r($_POST);
-    echo '</pre>';
+//    echo '<pre>';
+//    print_r($_POST);
+//    echo '</pre>';
 
     ?>
     <div class="_flex-centering">
