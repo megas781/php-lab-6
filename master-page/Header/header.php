@@ -10,18 +10,40 @@
     <link rel="stylesheet" href="compose.css">
 </head>
 <body>
-<div>
-    <?php
 
-    if (!isset($_POST['state'])) $_POST['state'] = 'page-load';
+<!--copied from php-template-->
 
-//    echo '<pre>';
-//    print_r($_POST);
-//    echo '</pre>';
+<header class="header js-header">
+    <div>
+        <a href="<?php echo $_SERVER['SCRIPT_NAME'] ?>" class="header__brand-link">
 
-    ?>
-    <div class="_flex-centering">
-        <?php
+            <img src=<?php echo HTTP_ROOT . '../php-template/media/dark-theme_logo@middle.png' ?> alt=""
+                 class="header__logo-image">
 
-        require SITE_ROOT . 'App.php';
-        ?>
+        </a>
+        <!--            <h2 class="header__title"> Лабораторные работы по PHP ️</h2>-->
+        <h2 class="header__title"> <?php echo 'Лабораторная #6. Обработка форм' ?></h2>
+    </div>
+
+
+    <!--    Здесь у нас выводятся кастомные элементы для отдельных страниц-->
+    <!--    --><?php //echo App::$headerContent; ?>
+
+
+</header>
+<script>
+    let headerPaddingDiv = document.createElement("div");
+    headerPaddingDiv.style.height = getComputedStyle(document.querySelector(".js-header")).getPropertyValue('height');
+    document.querySelector(".js-header").insertAdjacentElement("afterend", headerPaddingDiv);
+</script>
+
+
+<!--copied from php-template-->
+
+<?php
+
+if (!isset($_POST['state'])) $_POST['state'] = 'page-load';
+require SITE_ROOT . 'App.php';
+?>
+<main>
+<div class="_flex-centering">

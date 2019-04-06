@@ -6,3 +6,10 @@
     width: 960px;
     display: block;
 }
+
+main {
+    display: block;
+    /*margin-top: 16px;*/
+    /*margin-bottom: 16px;*/
+    margin: 16px 200px;
+}

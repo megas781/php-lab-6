@@ -1,5 +1,6 @@
-@import "modules/FormModule/form.css";
-@import "modules/ReplyModule/reply.css";
+@import "master-page/Header/header.css";
+@import "defaults.css";
 @import "base.css";
 @import "modules/FormModule/form.css";
 @import "modules/ReplyModule/reply.css";
+@import "master-page/Footer/footer.css";

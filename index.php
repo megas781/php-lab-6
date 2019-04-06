@@ -6,7 +6,7 @@ error_reporting(E_ALL);
 
 
 define('SITE_ROOT', $_SERVER['DOCUMENT_ROOT'] . '/php-lab-6/');
-
+define('HTTP_ROOT', 'http://' . $_SERVER['HTTP_HOST'] . '/php-lab-6/')
 //echo SITE_ROOT;
 
 ?>
