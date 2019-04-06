@@ -4,7 +4,7 @@
 
     <h3 class="pr-form__title">Тест математических знаний</h3>
     <div class="pr-form__mandatory-field-message">* – обязательное поле</div>
-
+    <div><?php if (isset($formValidationError)) echo $formValidationError; ?></div>
     <table class="pr-form__input-container">
 
         <tr class="pr-form__field text-field field_mandatory">
@@ -29,11 +29,11 @@
                         <?php
 
 //                        echo '<pre>';
-//                        print_r($this->prTypes);
+//                        print_r(FormController::$prTypes);
 //                        echo '</pre>';
 
-                        for ($i = 0; $i < count($this->prTypes); $i++) {
-                            $prType = $this->prTypes[$i];
+                        for ($i = 0; $i < count(FormController::$prTypes); $i++) {
+                            $prType = FormController::$prTypes[$i];
                             ?>
                             <td><input type="radio" name="pr-type" id="<?php echo $prType['id'] ?>"
                                        value="<?php echo $prType['id'] ?>" <?php echo $prType['checked']?>><label
@@ -41,7 +41,7 @@
                             </td>
                             <?php
 
-                            if ($i % 2 === 1 && $i !== count($this->prTypes) - 1) {
+                            if ($i % 2 === 1 && $i !== count(FormController::$prTypes) - 1) {
                                 echo "</tr>\n<tr>";
                             }
                         }
@@ -68,7 +68,11 @@
             <td><input type="text" id="c-value" name="c-value" placeholder="Вещественное число"
                        value="<?php echo $cValue; ?>"></td>
         </tr>
-
+        <tr class="pr-form__field text-field field_mandatory">
+            <td><label for="answer-value">Ваш ответ*</label></td>
+            <td><input type="text" id="answer-value" name="answer-value" placeholder="Вещественное число"
+                       value="<?php echo $answerValue; ?>"></td>
+        </tr>
 
         <tr class="pr-form__field radio-field field_mandatory">
             <td colspan="2">
@@ -79,11 +83,11 @@
                     <tr>
                         <?php
 //                        echo '<pre>';
-//                        print_r($this->viewTypes);
+//                        print_r(FormController::$viewTypes);
 //                        echo '</pre>';
 
-                        for ($i = 0; $i < count($this->viewTypes); $i++):
-                        $viewType = $this->viewTypes[$i];
+                        for ($i = 0; $i < count(FormController::$viewTypes); $i++):
+                        $viewType = FormController::$viewTypes[$i];
                             ?>
                             <td><input type="radio" name="view-type" id="<?php echo $viewType['id']; ?>"
                                        value="<?php echo $viewType['id']; ?>" <?php echo $viewType['checked'] ?>><label
