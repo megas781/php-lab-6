@@ -13,14 +13,14 @@ class App {
     }
 
     function showForm() {
-        include 'modules/FormModule/FormController.php';
+        include_once 'modules/FormModule/FormController.php';
         $form = new FormController();
         $form->run();
     }
 
     function showReply() {
 
-        include "modules/ReplyModule/ReplyController.php";
+        include_once "modules/ReplyModule/ReplyController.php";
         $reply = new ReplyController();
         $reply-> run();
 

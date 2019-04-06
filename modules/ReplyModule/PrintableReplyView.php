@@ -1,19 +1,4 @@
-<div>
-
-<!--    <div><b>Результат тестирования</b></div>-->
-<!--    <br>-->
-<!--    <div>--><?php //echo $fio; ?><!--, --><?php //echo $groupNumber; ?><!--</div>-->
-<!--    <br>-->
-<!--    <div>Сведения о студенте</div>-->
-<!--    <div>--><?php //echo $about ?><!--</div>-->
-<!--    <br>-->
-<!--    <div>Тип задачи: --><?php //echo FormController::$prTypes[$prIndex]['text']; ?><!--</div>-->
-<!--    <div>Входные данные:</div>-->
-<!--    <div>A = --><?php //echo $aValue ?><!--</div>-->
-<!--    <div>B = --><?php //echo $bValue ?><!--</div>-->
-<!--    <div>C = --><?php //echo $cValue ?><!--</div>-->
-<!--    <div>Ответ студента  : --><?php //echo $answerValue ?><!--</div>-->
-<!--    <div>Правильный ответ: --><?php //echo 228 ?><!--</div>-->
+<div id="printable-view">
     <table>
         <thead>
         <tr>
@@ -58,10 +43,18 @@
         </tr>
         <tr>
             <td>Правильный ответ</td>
-            <td><?php echo $rightAnswer; ?></td>
+            <td><?php echo $computedValue; ?></td>
         </tr>
         <tr>
-            <td><b><?php echo 'Ответы не совпадают' ?></b></td>
+            <td><b><?php
+
+                    if ($answerValue == $computedValue) {
+                        echo 'Ответы совпадают';
+                    } else {
+                        echo 'Ответы не совпадают';
+                    }
+
+                    ?></b></td>
         </tr>
         </tbody>
     </table>

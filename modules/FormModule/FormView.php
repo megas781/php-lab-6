@@ -55,22 +55,22 @@
 
         <tr class="pr-form__field text-field field_mandatory">
             <td><label for="a-value">Значение А*</label></td>
-            <td><input type="text" id="a-value" name="a-value" placeholder="Вещественное число"
+            <td><input type="text" id="a-value" name="a-value" placeholder="Unsigned float only"
                        value="<?php echo $aValue; ?>"></td>
         </tr>
         <tr class="pr-form__field text-field field_mandatory">
             <td><label for="b-value">Значение B*</label></td>
-            <td><input type="text" id="b-value" name="b-value" placeholder="Вещественное число"
+            <td><input type="text" id="b-value" name="b-value" placeholder="Unsigned float only"
                        value="<?php echo $bValue; ?>"></td>
         </tr>
         <tr class="pr-form__field text-field field_mandatory">
             <td><label for="c-value">Значение C*</label></td>
-            <td><input type="text" id="c-value" name="c-value" placeholder="Вещественное число"
+            <td><input type="text" id="c-value" name="c-value" placeholder="Unsigned float only"
                        value="<?php echo $cValue; ?>"></td>
         </tr>
         <tr class="pr-form__field text-field field_mandatory">
             <td><label for="answer-value">Ваш ответ*</label></td>
-            <td><input type="text" id="answer-value" name="answer-value" placeholder="Вещественное число"
+            <td><input type="text" id="answer-value" name="answer-value" placeholder="Unsigned float only"
                        value="<?php echo $answerValue; ?>"></td>
         </tr>
 

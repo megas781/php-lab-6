@@ -7,14 +7,14 @@ class ReplyController
     {
         //здесь достаём данные из post и определяем, какой view показать
 
-        $fio = isset($_POST['fio']) ? $_POST['fio'] : '';
-        $groupNumber = isset($_POST['group-number']) ? $_POST['group-number'] : '';
+        $fio = isset($_POST['fio']) ? htmlspecialchars($_POST['fio']) : '';
+        $groupNumber = isset($_POST['group-number']) ? htmlspecialchars($_POST['group-number']) : '';
 
-        $viewType = isset($_POST['view-type']) ? $_POST['view-type'] : '';
-        $prType = isset($_POST['pr-type']) ? $_POST['pr-type'] : '';
+        $viewType = isset($_POST['view-type']) ? htmlspecialchars($_POST['view-type']) : '';
+        $prType = isset($_POST['pr-type']) ? htmlspecialchars($_POST['pr-type']) : '';
 
         //Этот импорт нужен, чтобы достать свойсва count(FormController::prTypes) и FormController::prTypes['text']
-        include $_SERVER['DOCUMENT_ROOT'] . '/modules/FormModule/FormController.php';
+        include_once $_SERVER['DOCUMENT_ROOT'] . '/modules/FormModule/FormController.php';
         $prIndex = -1;
         for ($i = 0; $i < count(FormController::$prTypes); $i++) {
             if (FormController::$prTypes[$i]['id'] === $prType) {
@@ -24,32 +24,45 @@ class ReplyController
         }
 
 
-        $aValue = isset($_POST['a-value']) ? $_POST['a-value'] : '';
-        $bValue = isset($_POST['b-value']) ? $_POST['b-value'] : '';
-        $cValue = isset($_POST['c-value']) ? $_POST['c-value'] : '';
-        $answerValue = isset($_POST['answer-value']) ? $_POST['answer-value'] : '';
-
-
+        $aValue = isset($_POST['a-value']) ? htmlspecialchars($_POST['a-value']) : '';
+        $bValue = isset($_POST['b-value']) ? htmlspecialchars($_POST['b-value']) : '';
+        $cValue = isset($_POST['c-value']) ? htmlspecialchars($_POST['c-value']) : '';
+        $answerValue = isset($_POST['answer-value']) ? htmlspecialchars($_POST['answer-value']) : '';
 
         $shouldSend = isset($_POST['send-to-email-checkbox']) ? 'yes' : '';
-        $email = isset($_POST['email']) ? $_POST['email'] : '';
-        $about = isset($_POST['about']) ? $_POST['about'] : '';
+        $email = isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '';
+        $about = isset($_POST['about']) ? htmlspecialchars($_POST['about']) : '';
 
 
         if ($this->postedDataIsValid($fio, $groupNumber, $prIndex, $aValue, $bValue, $cValue, $answerValue, $shouldSend, $email)) {
 
-            //Должна быть реализована фукнция вычисления правильного ответа
-            $rightAnswer = 228;
+            //Здесь мы проверили сырые данные из $_POST. Теперь их можно обработать, НО!
+            //Перед обраоткой нужно проверить, существует ли данный prType
 
-            if ($viewType === 'print-view') {
-                include 'PrintableReplyView.php';
-            } else {
-                include 'BrowserReplyView.php';
+            if (in_array($prType, ['triangle-perimeter', 'arith-average', 'triangle-square', 'geom-average', 'prlppd-volume', 'bitwise-conjunction'])) {
+
+                //Здесь мы точно уверены, что getSolvedProblem вернёт верное значение
+
+                $aValue = floatval(str_replace(',','.',$aValue));
+                $bValue = floatval(str_replace(',','.',$bValue));
+                $cValue = floatval(str_replace(',','.',$cValue));
+
+                //Здесь уже обработанные данные $[letter]Value в типа float.
+                //Теперь можно вычислять правильный ответ
+                $computedValue = $this->getSolvedProblem($aValue,$bValue,$cValue,$prType);
+
+                if ($viewType === 'print-view') {
+                    include 'PrintableReplyView.php';
+                } else {
+                    include 'BrowserReplyView.php';
+                }
+
+                if ($shouldSend) {
+                    //Мы должны отправить результаты на почту
+                }
             }
 
-            if ($shouldSend) {
-                //Мы должны отправить результаты на почту
-            }
+
 
         } else {
             $formValidationError = 'Не все поля формы введены корректно!';
@@ -78,13 +91,45 @@ class ReplyController
         }
 
     }
+    /*
+     * @return Float
+     */
+    private function getSolvedProblem($a,$b,$c, $taskType)
+    {
 
+        switch ($taskType) {
+            case 'triangle-perimeter':
+                return $a + $b + $c;
+                break;
+            case 'arith-average':
+                return ($a + $b + $c)/3;
+                break;
+            case 'triangle-square':
+                $p = ($a + $b + $c)/2;
+                return sqrt($p * ($p - $a) * ($p - $b) * ($p - $c));
+                break;
+            case 'geom-average':
+                return pow($a * $b *$c, 1/3);
+                break;
+            case 'prlppd-volume':
+                return $a * $b *$c;
+                break;
+            case 'bitwise-conjunction':
+                return $a & $b & $c;
+                break;
+            default:
+                return '';
+                break;
+        }
+    }
+
+    //Deprecated
     private function showPrintableReplyView()
     {
         include 'PrintableReplyView.php';
     }
 
-
+    //Deprecated
     private function showBrowserReplyView()
     {
         include 'BrowserReplyView.php';
