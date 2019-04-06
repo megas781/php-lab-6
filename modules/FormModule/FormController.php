@@ -40,7 +40,7 @@ class FormController {
             FormController::$prTypes[0]['checked'] = 'checked';
         }
 
-        if ($_POST['state'] === 'form-post') {
+        if ($GLOBALS['APP']->getState() === 'form-post') {
             //Если уже был post, то данные подгружаются из $_POST
             for ($i = 0; $i < count(FormController::$viewTypes); $i++) {
 
@@ -58,10 +58,22 @@ class FormController {
 
         //Следующие четыре переменные не подгружаются из post, но могут быть сгенерированы рандомно.
         //Нужно будет реализовать эту логику
-        $aValue = isset($_POST['a-value']) ? $_POST['a-value'] : '';
-        $bValue = isset($_POST['b-value']) ? $_POST['b-value'] : '';
-        $cValue = isset($_POST['c-value']) ? $_POST['c-value'] : '';
-        $answerValue = isset($_POST['answer-value']) ? $_POST['answer-value'] : '';
+
+        if ($GLOBALS['APP']->getState() == 'retest') {
+            //Здесь мы должны сгенерировать рандомные значения для a, b и c
+            $aValue = rand(1, 100);
+            $bValue = rand(1, 100);
+            $cValue = rand(1, 100);
+            $answerValue = '';
+
+        } else {
+            //здесь логика для page-load и form-post
+            $aValue = isset($_POST['a-value']) ? $_POST['a-value'] : '';
+            $bValue = isset($_POST['b-value']) ? $_POST['b-value'] : '';
+            $cValue = isset($_POST['c-value']) ? $_POST['c-value'] : '';
+            $answerValue = isset($_POST['answer-value']) ? $_POST['answer-value'] : '';
+        }
+
 
 
         //'checked' или ''
