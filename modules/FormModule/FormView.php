@@ -2,6 +2,13 @@
 
     <input type="hidden" name="state" value="form-post">
 
+    <?php
+
+    if (isset($this->errorMessage)) {
+        echo "<div style='color: red;'>".$this->errorMessage."</div>";
+    }
+    ?>
+
     <h3 class="pr-form__title">Тест математических знаний</h3>
     <div class="pr-form__mandatory-field-message">* – обязательное поле</div>
     <div><?php if (isset($formValidationError)) echo $formValidationError; ?></div>
@@ -13,7 +20,7 @@
             </td>
         </tr>
         <tr class="pr-form__field text-field ">
-            <td><label for="group-number">Номер группы</label></td>
+            <td><label for="group-number">Номер группы*</label></td>
             <td><input type="text" id="group-number" name="group-number" placeholder="123-456"
                        value="<?php echo $groupNumber; ?>"></td>
         </tr>

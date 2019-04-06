@@ -1,9 +1,12 @@
 <?php
 
 class FormController {
-    function __construct()
-    {
 
+    public $errorMessage;
+
+    function __construct($errorMessage = null)
+    {
+        $this->errorMessage = $errorMessage;
     }
 
     static public $prTypes = [

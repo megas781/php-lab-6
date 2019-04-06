@@ -20,9 +20,9 @@ class App {
 
     }
 
-    function showForm() {
+    function showForm($errorMessage = null) {
         include_once 'modules/FormModule/FormController.php';
-        $form = new FormController();
+        $form = new FormController($errorMessage);
         $form->run();
     }
     function showFormWithGetParams() {

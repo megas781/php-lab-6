@@ -19,3 +19,8 @@ label, input {
 #email {
     display: none;
 }
+
+#about {
+    width: 100%;
+    resize: none;
+}

@@ -66,7 +66,7 @@ class ReplyController
 
         } else {
             $formValidationError = 'Не все поля формы введены корректно!';
-            $GLOBALS['APP']->showForm();
+            $GLOBALS['APP']->showForm($formValidationError);
         }
 
     }
