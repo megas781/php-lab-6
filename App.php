@@ -21,12 +21,12 @@ class App {
     }
 
     function showForm($errorMessage = null) {
-        include_once 'modules/FormModule/FormController.php';
+        include_once SITE_ROOT . '/modules/FormModule/FormController.php';
         $form = new FormController($errorMessage);
         $form->run();
     }
     function showFormWithGetParams() {
-        include_once 'modules/FormModule/FormController.php';
+        include_once SITE_ROOT . 'modules/FormModule/FormController.php';
         $form = new FormController();
 
         $fio = isset($_GET['fio']) ? $_GET['fio'] : '';
@@ -40,7 +40,7 @@ class App {
 
     function showReply() {
 
-        include_once "modules/ReplyModule/ReplyController.php";
+        include_once SITE_ROOT . "modules/ReplyModule/ReplyController.php";
         $reply = new ReplyController();
         $reply-> run();
 

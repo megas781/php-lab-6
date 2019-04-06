@@ -62,7 +62,7 @@
         <tfoot>
         <tr>
             <td colspan="2">
-                <a class="restart-test-link" href="http://localhost:63342/php-lab-6/index.php?new=yes&fio=<?php echo $fio ?>&group-number=<?php echo $groupNumber; ?>&should-send=<?php echo $shouldSend; ?>&email=<?php echo $email; ?>&about=<?php echo $about ?>">Повторить тест</a>
+                <a class="restart-test-link" href="http://<?php echo $_SERVER['HTTP_HOST'] . '/php-lab-6/' ?>?new=yes&fio=<?php echo $fio ?>&group-number=<?php echo $groupNumber; ?>&should-send=<?php echo $shouldSend; ?>&email=<?php echo $email; ?>&about=<?php echo $about ?>">Повторить тест</a>
             </td>
         </tr>
         </tfoot>

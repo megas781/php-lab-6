@@ -22,5 +22,6 @@
     ?>
     <div class="_flex-centering">
         <?php
-        include $_SERVER['DOCUMENT_ROOT'] . '/App.php';
+
+        require SITE_ROOT . 'App.php';
         ?>

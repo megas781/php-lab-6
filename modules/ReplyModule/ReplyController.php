@@ -14,7 +14,7 @@ class ReplyController
         $prType = isset($_POST['pr-type']) ? htmlspecialchars($_POST['pr-type']) : '';
 
         //Этот импорт нужен, чтобы достать свойсва count(FormController::prTypes) и FormController::prTypes['text']
-        include_once $_SERVER['DOCUMENT_ROOT'] . '/modules/FormModule/FormController.php';
+        include_once SITE_ROOT . '/modules/FormModule/FormController.php';
         $prIndex = -1;
         for ($i = 0; $i < count(FormController::$prTypes); $i++) {
             if (FormController::$prTypes[$i]['id'] === $prType) {
@@ -60,14 +60,19 @@ class ReplyController
                 if ($shouldSend) {
                     //Мы должны отправить результаты на почту
 
-                    $file = file_get_contents($_SERVER['DOCUMENT_ROOT'] .'/modules/ReplyModule/PrintableReplyView.php');
+                    $file = file_get_contents(SITE_ROOT . '/modules/ReplyModule/PrintableReplyView.php');
 //                    echo htmlspecialchars($file);
 
-                    if (mail($email, 'Результаты теста', $file, 'From: auto@mami.ru\nContent-Type: text/html; charset=utf-8\n')) {
-//                        echo 'успешно отправено';
-                    } else {
-//                        echo 'не отправлено';
-                    }
+
+                    mail( $email, 'Результат тестирования',
+                        'asdffdsa',
+                        "From: auto@mami.ru\n"."Content-Type: text/plain; charset=utf-8\n" );
+
+//                    if (mail($email, 'Результаты теста', $file, 'From: auto@mami.ru\nContent-Type: text/html; charset=utf-8\n')) {
+////                        echo 'успешно отправено';
+//                    } else {
+////                        echo 'не отправлено';
+//                    }
                 }
             }
 
