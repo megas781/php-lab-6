@@ -1,4 +1,4 @@
-<form method="post" class="pr-form">
+<form action="?" method="post" class="pr-form">
 
     <input type="hidden" name="state" value="form-post">
 
@@ -102,10 +102,10 @@
 
         <tr class="pr-form__field">
             <td colspan="2">
-                <input type="checkbox" value="yes"
-                       id="send-to-email-checkbox"
-                       name="send-to-email-checkbox" <?php echo $sendToEmailCheckboxCheckedParam; ?>>
-                <label for="send-to-email-checkbox">Отправить
+                <input type="checkbox" value="checked"
+                       id="should-send-checkbox"
+                       name="should-send" <?php echo $shouldSend; ?>>
+                <label for="should-send-checkbox">Отправить
                     результат на почту</label>
             </td>
         </tr>

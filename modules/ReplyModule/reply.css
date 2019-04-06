@@ -2,6 +2,37 @@
     max-width: 220px;
     vertical-align: top;
 }
-/*td:only-child {*/
-    /*text-align: center;*/
-/*}*/
+
+
+/* Браузерные стили */
+
+#browser-view {
+
+}
+#browser-view > table {
+    border-collapse: collapse;
+}
+
+#browser-view > table > tbody > tr > td, #browser-view > table > tbody > tr > th {
+    padding: 8px 16px;
+}
+
+#browser-view > table > tbody > tr:nth-child(2n){
+    background: #e2e2e2;
+}
+
+.wrong-answer {
+    background: red;
+    color: white;
+}
+.right-answer {
+    background: greenyellow;
+    color: black;
+}
+
+.restart-test-link {
+    display: block;
+    text-align: center;
+    border: 1px solid black;
+    padding: 4px 8px;
+}

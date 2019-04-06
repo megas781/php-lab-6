@@ -9,13 +9,33 @@ class App {
 
     //При загрузке страницы сначала определяем состояние
     function getState() {
-        return $_POST['state'];
+
+        //если есть ?new=yes, тогда статус 'retest'
+        if (isset($_GET['new']) and $_GET['new'] == 'yes') {
+            return 'retest';
+        } else {
+            //иначе статус подгружается из $_POST['state'];
+            return $_POST['state'];
+        }
+
     }
 
     function showForm() {
         include_once 'modules/FormModule/FormController.php';
         $form = new FormController();
         $form->run();
+    }
+    function showFormWithGetParams() {
+        include_once 'modules/FormModule/FormController.php';
+        $form = new FormController();
+
+        $fio = isset($_GET['fio']) ? $_GET['fio'] : '';
+        $groupNumber = isset($_GET['group-number']) ? $_GET['group-number'] : '';
+        $shouldSend= isset($_GET['should-send']) ? $_GET['should-send'] : '';
+        $email = isset($_GET['email']) ? $_GET['email'] : '';
+        $about = isset($_GET['about']) ? $_GET['about'] : '';
+
+        $form->run($fio, $groupNumber, $shouldSend, $email, $about);
     }
 
     function showReply() {

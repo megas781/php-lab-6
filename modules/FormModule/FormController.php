@@ -17,17 +17,17 @@ class FormController {
         ['id' => 'print-view', 'text' => 'Для печати', 'checked' => '']
     ];
 
-    function run() {
+    function run($fio = '', $groupNumber = '', $shouldSend = '', $email = '', $about = '') {
         //Здесь мы обрабатываем данные (работаем с post) и передаём их во view
 
-        $fio = isset($_POST['fio']) ? $_POST['fio'] : '';
-        $groupNumber = isset($_POST['group-number']) ? $_POST['group-number'] : '';
+
+        //Либо дефолт, либо из get. И самый приоритет у post
+        if (isset($_POST['fio'])) $fio = $_POST['fio'];
+        if (isset($_POST['group-number'])) $groupNumber = $_POST['group-number'];
 
 
         //Если первая загрузка, то выбирается первый вариант
-        if ($_POST['state'] === 'page-load') {
-            FormController::$prTypes[0]['checked'] = 'checked';
-        } else {
+        if ($GLOBALS['APP']->getState() === 'form-post' ) {
             //Если уже был post, то данные подгружаются из $_POST
             for ($i = 0; $i < count(FormController::$prTypes); $i++) {
                 $prType = FormController::$prTypes[$i];
@@ -35,11 +35,12 @@ class FormController {
                     FormController::$prTypes[$i]['checked'] = 'checked';
                 }
             }
+        } else {
+            //Работает для load-page и ?new=yes
+            FormController::$prTypes[0]['checked'] = 'checked';
         }
 
-        if ($_POST['state'] === 'page-load') {
-            FormController::$viewTypes[0]['checked'] = 'checked';
-        } else {
+        if ($_POST['state'] === 'form-post') {
             //Если уже был post, то данные подгружаются из $_POST
             for ($i = 0; $i < count(FormController::$viewTypes); $i++) {
 
@@ -50,9 +51,13 @@ class FormController {
                     FormController::$viewTypes[$i]['checked'] = 'checked';
                 }
             }
+        } else {
+            FormController::$viewTypes[0]['checked'] = 'checked';
         }
 
 
+        //Следующие четыре переменные не подгружаются из post, но могут быть сгенерированы рандомно.
+        //Нужно будет реализовать эту логику
         $aValue = isset($_POST['a-value']) ? $_POST['a-value'] : '';
         $bValue = isset($_POST['b-value']) ? $_POST['b-value'] : '';
         $cValue = isset($_POST['c-value']) ? $_POST['c-value'] : '';
@@ -60,11 +65,11 @@ class FormController {
 
 
         //'checked' или ''
-        $sendToEmailCheckboxCheckedParam = (isset($_POST['send-to-email-checkbox']) && $_POST['send-to-email-checkbox'] === 'yes') ? 'checked' : '';
+        if (isset($_POST['should-send'])) $shouldSend = $_POST['should-send'];
 
-        $email = isset($_POST['email']) ? $_POST['email'] : '';
+        if (isset($_POST['email'])) $email = $_POST['email'];
 
-        $about = isset($_POST['about']) ? $_POST['about'] : '';
+        if (isset($_POST['about'])) $about = $_POST['about'];
 
         include 'FormView.php';
     }

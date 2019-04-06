@@ -29,7 +29,7 @@ class ReplyController
         $cValue = isset($_POST['c-value']) ? htmlspecialchars($_POST['c-value']) : '';
         $answerValue = isset($_POST['answer-value']) ? htmlspecialchars($_POST['answer-value']) : '';
 
-        $shouldSend = isset($_POST['send-to-email-checkbox']) ? 'yes' : '';
+        $shouldSend = isset($_POST['should-send']) ? $_POST['should-send'] : '';
         $email = isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '';
         $about = isset($_POST['about']) ? htmlspecialchars($_POST['about']) : '';
 

@@ -1,10 +1,10 @@
-let sendToEmailCheckbox = document.querySelector('#send-to-email-checkbox');
+let sendToEmailCheckbox = document.querySelector('#should-send-checkbox');
 let emailInput = document.querySelector('#email');
 
-console.log('sdf');
+// console.log('sdf');
 
 if (sendToEmailCheckbox.checked) {
-    console.log('asdf');
+    // console.log('asdf');
     emailInput.style.display = 'table-row';
 }
 
