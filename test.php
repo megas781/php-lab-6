@@ -33,9 +33,9 @@ $matches = [];
 
 //echo '1,2' + 1;
 
+$file = include "modules/ReplyModule/MailReplyView.php";
 
+echo $file;
 
-echo floatval('1.24') + 2;
-
-echo '<pre>';
+//echo '<pre>';
 //print_r($matches);

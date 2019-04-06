@@ -59,6 +59,15 @@ class ReplyController
 
                 if ($shouldSend) {
                     //Мы должны отправить результаты на почту
+
+                    $file = file_get_contents($_SERVER['DOCUMENT_ROOT'] .'/modules/ReplyModule/PrintableReplyView.php');
+//                    echo htmlspecialchars($file);
+
+                    if (mail($email, 'Результаты теста', $file, 'From: auto@mami.ru\nContent-Type: text/html; charset=utf-8\n')) {
+//                        echo 'успешно отправено';
+                    } else {
+//                        echo 'не отправлено';
+                    }
                 }
             }
 

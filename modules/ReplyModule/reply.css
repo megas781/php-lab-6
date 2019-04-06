@@ -1,4 +1,4 @@
-#printable-view td {
+#printable-view td, #browser-view td {
     max-width: 220px;
     vertical-align: top;
 }
