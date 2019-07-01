@@ -111,6 +111,11 @@ class ReplyController
     private function getSolvedProblem($a,$b,$c, $taskType)
     {
 
+        //Проверка на валидность данных
+        if (($taskType == 'triangle-perimeter' || $taskType == 'triangle-square') && ($a >= $b + $c || $b >= $a + $c || $c >= $a + $b)) {
+            return 'NaN boy!';
+        }
+
         switch ($taskType) {
             case 'triangle-perimeter':
                 return $a + $b + $c;
